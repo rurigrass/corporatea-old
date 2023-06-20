@@ -24,8 +24,8 @@ export default function RootLayout({
       lang="en"
       className={cn("bg-white text-slate-900 antialiased", inter.className)}
     >
-      <Providers>
-        <body className="min-h-screen pt-12 bg-slate-50 antialiased">
+      <body className="min-h-screen pt-12 bg-slate-50 antialiased">
+        <Providers>
           {/* @ts-expect-error Server Component */}
           <Navbar />
           {authModal}
@@ -33,8 +33,8 @@ export default function RootLayout({
             {children}
           </div>
           <Toaster />
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 }
