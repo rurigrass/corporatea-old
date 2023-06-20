@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/Toaster";
 import Providers from "@/components/auth/Providers";
 
 export const metadata = {
-  title: "Breadit",
-  description: "A Reddit clone built with Next.js and TypeScript.",
+  title: "Corporatea",
+  description: "Spill the tea on your company.",
 };
 
 const inter = Inter({ subsets: ["latin"] });
