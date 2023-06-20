@@ -40,7 +40,7 @@ const layout = async ({ params, children }: layoutProps) => {
           },
           user: {
             // id: session.user.id
-            id: session.id,
+            id: session.user.id,
           },
         },
       });
@@ -91,10 +91,14 @@ const layout = async ({ params, children }: layoutProps) => {
                 </dd>
               </div>
 
-              {company.creatorId === session?.id ? (
+              {company.creatorId === session?.user?.id ? (
                 <div className="flex justify-between gap-x-4 py-3">
                   <p className="text-gray-500">You created this</p>
                 </div>
+              ) : null}
+
+              {company.creatorId !== session?.user.id ? (
+                <FollowUnfollowToggle/>
               ) : null}
             </dl>
           </div>
