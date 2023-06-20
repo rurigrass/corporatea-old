@@ -11,9 +11,9 @@ import { toast } from "@/hooks/use-toast";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 
 const page = ({}) => {
+  const router = useRouter();
   const [input, setInput] = useState<string>("");
   const { loginToast } = useCustomToast();
-  const router = useRouter();
 
   const { mutate: createCompany, isLoading } = useMutation({
     mutationFn: async () => {

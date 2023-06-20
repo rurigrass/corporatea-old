@@ -30,13 +30,13 @@ export async function POST(req: Request) {
     const company = await db.company.create({
       data: {
         name,
-        creatorId: session.id,
+        creatorId: session.user.id,
       },
     });
 
-    await db.subscription.create({
+    await db.follower.create({
       data: {
-        userId: session.id,
+        userId: session.user.id,
         companyId: company.id,
       },
     });
