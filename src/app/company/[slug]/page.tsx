@@ -34,8 +34,6 @@ const page = async ({ params }: PageProps) => {
 
   if (!company) return notFound();
 
-  console.log(company);
-
   return (
     <>
       <h1 className="font-bold text-3xl md:text-4xl h-14">{company.name}</h1>

@@ -49,7 +49,7 @@ model User {
   email            String?        @unique
   emailVerified    DateTime?
   createdCompanies Company[]      @relation("CreatedBy")
-  Subscriptions    Subscription[]
+  followers    Follower[]
   votes            Vote[]
 
   username String? @unique
@@ -72,12 +72,12 @@ model Company {
 
   creatorId   String?
   Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
-  subscribers Subscription[]
+  followers Follower[]
 
   @@index([name])
 }
 
-model Subscription {
+model Follower {
   user      User    @relation(fields: [userId], references: [id])
   userId    String
   company   Company @relation(fields: [companyId], references: [id])
