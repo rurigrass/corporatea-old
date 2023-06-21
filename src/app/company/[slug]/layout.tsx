@@ -1,3 +1,4 @@
+import FollowUnfollowToggle from "@/components/company/FollowUnfollowToggle";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { format } from "date-fns";
@@ -14,8 +15,6 @@ interface layoutProps {
 const layout = async ({ params, children }: layoutProps) => {
   const session = await getAuthSession();
   const { slug } = params;
-  console.log(session);
-  
 
   const company = await db.company.findFirst({
     where: {
@@ -45,7 +44,9 @@ const layout = async ({ params, children }: layoutProps) => {
         },
       });
 
-  const isAFollower = !!follower;
+      
+      //converts to boolean
+      const isFollower = !!follower;
 
   if (!company) return notFound();
 
@@ -56,10 +57,6 @@ const layout = async ({ params, children }: layoutProps) => {
       },
     },
   });
-
-
-  // console.log("SESSION ID: ", session?.user.id);
-  console.log("COMPANY: ", company);
 
   return (
     <div className="sm:container max-w-7xl mx-auto h-full pt-12">
@@ -97,9 +94,9 @@ const layout = async ({ params, children }: layoutProps) => {
                 </div>
               ) : null}
 
-              {/* {company.creatorId !== session?.user.id ? (
-                <FollowUnfollowToggle/>
-              ) : null} */}
+              {company.creatorId !== session?.user.id ? (
+                <FollowUnfollowToggle companyId={company.id} companyName={company.name} isFollower={isFollower}/>
+              ) : null}
             </dl>
           </div>
         </div>
