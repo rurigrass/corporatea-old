@@ -76,39 +76,39 @@ const FollowUnfollowToggle: FC<FollowUnfollowToggleProps> = ({
         const { data } = await axios.post("/api/company/unfollow", payload);
         return data as string;
       },
-      onError: (err: AxiosError) => {
-        if (err instanceof AxiosError) {
-          if (err.response?.status === 400) {
-            return toast({
-              title: "You do not follow this company",
-              variant: "destructive",
-            });
-          }
-          if (err.response?.status === 422) {
-            return toast({
-              title: "Something went wrong",
-              description: "Zod Error",
-              variant: "destructive",
-            });
-          }
-          if (err.response?.status === 401) {
-            return loginToast();
-          }
-        }
-        toast({
-          title: "There was an error.",
-          description: "Could not unfollow company.",
-          variant: "destructive",
-        });
-      },
-      ////this is a shorter alternative
-      //   onError: (err: AxiosError) => {
-      //     toast({
-      //       title: "Error",
-      //       description: err.response?.data as string,
-      //       variant: "destructive",
-      //     });
-      //   },
+    //   onError: (err: AxiosError) => {
+    //     if (err instanceof AxiosError) {
+    //       if (err.response?.status === 400) {
+    //         return toast({
+    //           title: "You do not follow this company",
+    //           variant: "destructive",
+    //         });
+    //       }
+    //       if (err.response?.status === 422) {
+    //         return toast({
+    //           title: "Something went wrong",
+    //           description: "Zod Error",
+    //           variant: "destructive",
+    //         });
+    //       }
+    //       if (err.response?.status === 401) {
+    //         return loginToast();
+    //       }
+    //     }
+    //     toast({
+    //       title: "There was an error.",
+    //       description: "Could not unfollow company.",
+    //       variant: "destructive",
+    //     });
+    //   },
+      //this is a shorter alternative
+        onError: (err: AxiosError) => {
+          toast({
+            title: "Error",
+            description: err.response?.data as string,
+            variant: "destructive",
+          });
+        },
       onSuccess: () => {
         startTransition(() => {
           // Refresh the current route and fetch new data from the server without

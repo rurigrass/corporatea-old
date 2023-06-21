@@ -27,6 +27,20 @@ export async function POST(req: Request) {
       return new Response("You do not follow this Company", { status: 400 });
     }
 
+    //check if user is the creator of the company
+    const userIsCompanyCreator = await db.company.findFirst({
+      where: {
+        id: companyId,
+        creatorId: session.user.id,
+      },
+    });
+
+    if (userIsCompanyCreator) {
+      return new Response("You cant unfollow a company you created", {
+        status: 400,
+      });
+    }
+
     await db.follower.delete({
       where: {
         userId_companyId: {
