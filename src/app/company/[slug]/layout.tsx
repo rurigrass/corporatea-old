@@ -1,7 +1,9 @@
 import FollowUnfollowToggle from "@/components/company/FollowUnfollowToggle";
+import { buttonVariants } from "@/components/ui/Button";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { format } from "date-fns";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -44,9 +46,8 @@ const layout = async ({ params, children }: layoutProps) => {
         },
       });
 
-      
-      //converts to boolean
-      const isFollower = !!follower;
+  //converts to boolean
+  const isFollower = !!follower;
 
   if (!company) return notFound();
 
@@ -95,8 +96,22 @@ const layout = async ({ params, children }: layoutProps) => {
               ) : null}
 
               {company.creatorId !== session?.user.id ? (
-                <FollowUnfollowToggle companyId={company.id} companyName={company.name} isFollower={isFollower}/>
+                <FollowUnfollowToggle
+                  companyId={company.id}
+                  companyName={company.name}
+                  isFollower={isFollower}
+                />
               ) : null}
+
+              <Link
+                href={`company/${slug}/spill`}
+                className={buttonVariants({
+                  variant: "outline",
+                  className: "w-full mb-6",
+                })}
+              >
+                Spill Tea
+              </Link>
             </dl>
           </div>
         </div>
