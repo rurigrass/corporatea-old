@@ -14,7 +14,7 @@ interface layoutProps {
 const layout = async ({ params, children }: layoutProps) => {
   const session = await getAuthSession();
   const { slug } = params;
-
+  console.log(session);
   
 
   const company = await db.company.findFirst({
@@ -97,9 +97,9 @@ const layout = async ({ params, children }: layoutProps) => {
                 </div>
               ) : null}
 
-              {company.creatorId !== session?.user.id ? (
+              {/* {company.creatorId !== session?.user.id ? (
                 <FollowUnfollowToggle/>
-              ) : null}
+              ) : null} */}
             </dl>
           </div>
         </div>
