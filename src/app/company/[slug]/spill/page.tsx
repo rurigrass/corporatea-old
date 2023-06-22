@@ -1,3 +1,5 @@
+import Editor from "@/components/spill/Editor";
+import { Button } from "@/components/ui/Button";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 
@@ -28,6 +30,15 @@ const page = async ({ params }: pageProps) => {
             on {params.slug}
           </p>
         </div>
+      </div>
+
+      {/* FORM */}
+      <Editor />
+
+      <div className="w-full flex justify-end">
+        <Button type="submit" className="w-full" form="company-spill-form">
+          Spill
+        </Button>
       </div>
     </div>
   );
